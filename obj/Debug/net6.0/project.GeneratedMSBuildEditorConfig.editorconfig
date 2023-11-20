@@ -1,0 +1,61 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = project
+build_property.RootNamespace = project
+build_property.ProjectDir = E:\PRN211\project\project\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\PRN211\project\project
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/PRN211/project/project/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Home/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/Inketqua.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxJbmtldHF1YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/ManageQuiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxNYW5hZ2VRdWl6LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/Quiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxRdWl6LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/QuizDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxRdWl6RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/Result.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/Retake.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxSZXRha2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/ViewQuizDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxWaWV3UXVpekRldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN211/project/project/Views/Quiz/ViewResultDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpelxWaWV3UmVzdWx0RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

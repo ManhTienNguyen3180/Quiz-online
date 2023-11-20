@@ -1,0 +1,120 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@using project.Models
+@model List<Quiz>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <title>Online Quiz</title>
+
+</head>
+<body>
+    <div class="content">
+        <header>
+            <nav>
+                @{
+                    User u = ViewBag.User;
+                }
+
+
+
+                @if (u != null && u.Role == 2)
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link float-left" asp-controller="Quiz" asp-action="Inketqua" asp-route-quizId="0" asp-route-userId="@u.UserId">Result</a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Logout">Logout </a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Hello @u.Username</a>
+
+                }
+                else if (u != null && u.Role == 1)
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link float-left" asp-controller="Quiz" asp-action="Inketqua" asp-route-quizId="0" asp-route-userId="@u.UserId">Result</a>
+                    <a class="nav-link float-left" asp-controller="Quiz" asp-action="ManageQuiz">Mangae Quiz</a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Logout">Logout </a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Hello @u.Username</a>
+                }
+                else
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Login/Register</a>
+                }
+
+
+            </nav>
+        </header>
+
+
+        <h1 class="heading text-center top-bottom-margin">Manage Quiz</h1>
+        <div>
+            <form id="frm" asp-controller="Quiz" asp-action="ManageQuiz" method="post">
+                <select name="cate" onchange="change()" style="margin-left:200px">
+                    
+                    <option value="0" selected>All</option>
+                    @foreach (CategoryQuiz category in ViewBag.category)
+                    {
+                        @if (ViewBag.categoryselected == category.Id)
+                        {
+                            <option value="@category.Id" selected>
+                                @category.CategoryName
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">
+                                @category.CategoryName
+                            </option>
+                        }
+                        
+                    }
+                </select>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Quiz ID</th>
+                        <th>Title</th>
+                        <th>Summary</th>
+                        <th>Category</th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@item.QuizId</td>
+                            <td>@item.Title</td>
+                            <td>@item.Summary</td>
+                            <td>@item.Category?.CategoryName</td>
+
+                            <td>
+                                <a asp-controller="Quiz" asp-action="ViewQuizDetail" asp-route-quizid="@item.QuizId">View</a>
+                                <a asp-controller="Quiz" asp-action="EditQuizDetail">Edit</a>
+                            </td>
+
+                        </tr>
+                    }
+                    
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <footer class="full-width">
+    </footer>
+    <script>
+        function change() {
+            document.getElementById("frm").submit();
+        }
+    </script>
+</body>
+</html>

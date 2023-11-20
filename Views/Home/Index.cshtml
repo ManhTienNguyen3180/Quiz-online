@@ -1,0 +1,84 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@using project.Models
+@model List<CategoryQuiz>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <title>Online Quiz</title>
+    
+</head>
+<body>
+    <div class="content">
+        <header>
+            <nav>
+                @{
+                    User u = ViewBag.User;
+                }
+                
+                @if (u != null && u.Role == 2)
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link float-left"  asp-controller="Quiz" asp-action="Inketqua" asp-route-quizId="0" asp-route-userId="@u.UserId" asp-route-sort="0">Result</a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Logout">Logout </a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Hello @u.Username</a>
+
+                }
+                else if (u != null && u.Role == 1)
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link float-left" id="result" asp-controller="Quiz" asp-action="Inketqua" asp-route-quizId="0" asp-route-userId="@u.UserId" asp-route-sort="0">Result</a>
+                    <a class="nav-link float-left" asp-controller="Quiz" asp-action="ManageQuiz">Mangae Quiz</a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Logout">Logout </a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Hello @u.Username</a>
+                }
+                else
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+                    
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Login/Register</a>
+                }
+
+
+            </nav>
+        </header>
+
+        <div class="banner-heading">
+            
+            <div class="banner-heading-2">- Take a quiz to test yourself -</div>
+        </div>
+        <h1 class="heading text-center top-bottom-margin">Start a quiz</h1>
+        <div>
+            
+            <div class="grid">
+                @foreach (var item in Model)
+                {
+                    <a asp-controller="Quiz" asp-action="QuizDetail" asp-route-catename="@item.Id" class="quiz-link"><span>@item.CategoryName</span></a>
+                }
+                 
+            </div>
+            
+        </div>
+        
+    </div>
+    <footer class="full-width">
+    </footer>
+    @* <script>
+        document.getElementById('result').addEventListener('click', function (event) {
+            event.preventDefault();
+            
+            var form = document.createElement('form');
+            
+            form.action = '/Quiz/Inketqua?quizId=0&userId=1&sort=0'; 
+            form.method = 'POST';
+
+            
+            document.body.appendChild(form);
+            form.submit();
+        });
+    </script> *@
+</body>
+</html>

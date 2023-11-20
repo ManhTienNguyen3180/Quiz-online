@@ -1,0 +1,53 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css" >
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <title>Register</title>
+</head>
+<body>
+    <div class="content flexbox flexbox-center">
+
+        <div class="form-container">
+
+            <h1 class="heading text-center">Register</h1>
+
+            <form asp-controller="Home" asp-action="Register" method="post">
+
+                <label class="input-field-container">
+                    Username
+                    <input type="text" name="username"
+                           class="input-field full-width">
+                    @* <span class="validation-error" >Username Error</span> *@
+                </label>
+                <label class="input-field-container">
+                    Password
+                    <input type="password" name="password"
+                           class="input-field full-width">
+                    @* <span class="validation-error" >Password Error</span> *@
+                </label>
+                <label class="input-field-container">
+                    Confirm Password
+                    <input type="password" name="repassword"
+                           class="input-field full-width">
+                    @* <span class="validation-error" >Password Match Error</span> *@
+                </label>
+
+                
+
+                <input type="submit" value="Register" class="button full-width top-bottom-margin">
+                <p style="color: red">@ViewBag.mess</p>
+            </form>
+
+            <a asp-controller="Home" asp-action="Login" class="float-right">Already have an account? Login</a>
+
+
+        </div>
+    </div>
+    
+
+</body>
+</html>

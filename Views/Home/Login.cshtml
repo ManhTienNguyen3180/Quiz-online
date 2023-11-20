@@ -1,0 +1,42 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Shahzaib Sarwar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css" >
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="content flexbox flexbox-center">
+        <div class="form-container">
+
+            <h1 class="heading text-center">Login</h1>
+
+            
+
+            <form asp-controller="Home" asp-action="Login" method="post">
+                <label class="input-field-container">
+                    Username
+                    <input id="username" type="text" name="username" class="input-field full-width">
+                </label>
+
+                <label class="input-field-container">
+                    Password
+                    <input id="password" type="password" name="password" class="input-field full-width">
+                </label>
+
+                <input type="submit" value="Login" class="button full-width top-bottom-margin">
+                <p style="color: red">@ViewBag.mess</p>
+            </form>
+
+            <a asp-controller="Home" asp-action="Register" class="float-right">New User? Register Here</a>
+        </div>
+
+    </div>
+    
+</body>
+</html>

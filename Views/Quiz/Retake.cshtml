@@ -1,0 +1,134 @@
+﻿@using project.Models;
+@model project.ViewModel.ResultDetailViewModel
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <title>Online Result</title>
+</head>
+<body>
+    <div class="content">
+        <header>
+            <nav>
+                @{
+                    User u = ViewBag.User;
+                }
+
+                @if (u != null && u.Role == 2)
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link float-left" asp-controller="Quiz" asp-action="Inketqua" asp-route-quizId="0" asp-route-userId="@u.UserId" asp-route-sort="0">Result</a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Logout">Logout </a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Hello @u.Username</a>
+
+                }
+                else if (u != null && u.Role == 1)
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link float-left" asp-controller="Quiz" asp-action="Inketqua" asp-route-quizId="0" asp-route-userId="@u.UserId" asp-route-sort="0">Result</a>
+                    <a class="nav-link float-left" asp-controller="Quiz" asp-action="ManageQuiz">Mangae Quiz</a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Logout">Logout </a>
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Hello @u.Username</a>
+                }
+                else
+                {
+                    <a class="nav-link float-left" asp-controller="Home" asp-action="Index">Home</a>
+
+                    <a class="nav-fancy-link float-right" asp-controller="Home" asp-action="Login">Login/Register</a>
+                }
+
+
+            </nav>
+        </header>
+        <div>
+            <div class="quiz-grid">
+                <h1 class="text-center top-bottom-padding heading"><span>@ViewBag.quizname</span></h1>
+                <h3 class="text-center top-bottom-padding heading"><span>@ViewBag.sub</span></h3>
+
+
+
+
+                <form asp-controller="Quiz" asp-action="Result2" id="form" method="post" class="top-margin">
+                    @foreach (var item in Model.QuizQuestions)
+                    {
+                        if (item.Quiz.CategoryId == 1)
+                        {
+                            <div class="flexbox flexbox-center-vertical quiz-question top-margin">
+                                <audio controls>
+                                    <source src="@item.Description" type="audio/ogg">
+                                </audio>
+                            </div>
+                            <input type="hidden" name="quizId" value="@item.QuizId" />
+                            <input type="hidden" name="datetime" value="@ViewBag.time" />
+                            
+                        }
+                        if (item.Quiz.CategoryId != 1)
+                        {
+                            <div class="flexbox flexbox-center-vertical quiz-question top-margin">
+                                @item.Description
+                            </div>
+                            <input type="hidden" name="quizId" value="@item.QuizId" />
+                            <input type="hidden" name="datetime" value="@ViewBag.time" />
+                        }
+                        @foreach (var answer in item.QuizAnswers)
+                        {
+                            bool isSelected = false;
+                            foreach (var answerSelected in Model.takeAnswers)
+                            {
+                                if (answerSelected.AnswerId == answer.Id)
+                                {
+                                    isSelected = true;
+                                    
+                                    break;
+                                }
+                            }
+
+                            if (isSelected)
+                            {
+                                <label class="question-option-container top-margin">
+                                    <span class="question-option">
+                                        @answer.Description
+                                    </span>
+                                    <input type="radio"  checked name="attemptedAnswerId_@answer.QuestionId" value="@answer.Id" >
+                                    
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="question-option-container top-margin">
+                                    <span class="question-option">
+                                        @answer.Description
+                                    </span>
+                                    <input type="radio"  name="attemptedAnswerId_@answer.QuestionId" value="@answer.Id" >
+                                </label>
+                            }
+                        }
+
+
+
+                    }
+                    <div>
+                        <input type="submit" value="Save & Next" class="button float-right top-margin half-width" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <footer class="full-width">
+    </footer>
+    @section Scripts {
+        <script>
+            // Optional: Prevent form submission on page reload
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
+    }
+</body>
+</html>
